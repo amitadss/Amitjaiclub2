@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jai Club Official</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+background:#000;
+color:#fff;
+text-align:center;
+overflow-x:hidden;
+}
+
+.container{
+padding:20px;
+max-width:400px;
+margin:auto;
+}
+
+.active-bar{
+color:#facc15;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.logo{
+width:150px;height:150px;border-radius:50%;
+border:3px solid gold;margin:20px auto;
+display:flex;align-items:center;justify-content:center;
+font-size:22px;font-weight:bold;background:#111;
+box-shadow:0 0 30px rgba(255,215,0,0.5);
+}
+
+.title{font-size:26px;font-weight:bold;margin:10px 0;}
+.highlight{color:#f97316;}
+
+.progress{
+height:10px;background:#222;border-radius:10px;
+margin:20px 0;overflow:hidden;
+}
+.progress span{
+display:block;height:100%;width:80%;
+background:linear-gradient(to right,#f97316,#fb923c);
+}
+
+/* BUTTON */
+.btn{
+display:block;padding:18px;margin:25px 0;
+border-radius:50px;font-size:18px;font-weight:bold;
+text-decoration:none;color:#fff;
+background:linear-gradient(45deg,#ff6a00,#ff2e00);
+animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+/* TIMER */
+.timer{
+margin-top:20px;background:#111;
+padding:15px;border-radius:15px;
+}
+.timer span{font-size:28px;color:#facc15;}
+
+/* CHAT STACK */
+.chat-container{
+position:fixed;
+bottom:20px;
+left:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:999;
+}
+
+.chat{
+background:#111;
+padding:10px 14px;
+border-radius:12px;
+font-size:13px;
+opacity:0;
+transform:translateY(20px);
+animation:fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn{
+to{opacity:1;transform:translateY(0);}
+}
+
+.footer{
+margin-top:20px;
+font-size:12px;
+color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="active-bar">🟢 <span id="members">954</span> MEMBERS ACTIVE</div>
+
+<div class="logo">JAI CLUB</div>
+
+<div class="title">RECOVER ALL LOSSES</div>
+<div class="title highlight">95% ACCURATE SIGNALS 🔥</div>
+
+<div class="progress"><span></span></div>
+
+<a href="https://t.me/+GAswegA9IisxMTY1" class="btn" id="joinBtn">
+🚀 JOIN JAI CLUB NOW
+</a>
+
+<div class="timer">
+<span id="sec">60</span> Sec
+</div>
+
+<div class="footer">© 2026 Jai Club</div>
+
+</div>
+
+<!-- CHAT CONTAINER -->
+<div class="chat-container" id="chatContainer"></div>
+
+<!-- SOUND -->
+<audio id="ping" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<script>
+// TIMER + AUTO REDIRECT
+let time = 60;
+const secDisplay = document.getElementById("sec");
+
+const timer = setInterval(()=>{
+if(time > 0){
+time--;
+secDisplay.innerText = time;
+}else{
+clearInterval(timer);
+window.location.href="https://t.me/+GAswegA9IisxMTY1";
+}
+},1000);
+
+// FAKE MEMBERS
+let members = 954;
+setInterval(()=>{
+members += Math.floor(Math.random()*3)+1;
+document.getElementById("members").innerText = members;
+},3000);
+
+// CHAT DATA
+const names = ["Rahul","Aman","Rohit","Vikas","Suresh","Neha","Pooja","Ankit","Raj","Karan"];
+const messages = [
+"joined Jai Club",
+"earned ₹500",
+"earned ₹1200",
+"made profit ₹850",
+"withdraw ₹2000",
+"just joined now 🔥"
+];
+
+const chatContainer = document.getElementById("chatContainer");
+const sound = document.getElementById("ping");
+
+function addChat(){
+const chat = document.createElement("div");
+chat.className = "chat";
+
+const name = names[Math.floor(Math.random()*names.length)];
+const msg = messages[Math.floor(Math.random()*messages.length)];
+
+chat.innerText = name + " " + msg;
+
+// SOUND
+sound.currentTime = 0;
+sound.play();
+
+chatContainer.appendChild(chat);
+
+// remove after 5 sec
+setTimeout(()=>{
+chat.remove();
+},5000);
+}
+
+// multiple chats randomly
+setInterval(addChat,2500);
+</script>
+
+</body>
+</html>
